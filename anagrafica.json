@@ -1,35 +1,30 @@
 {
-    "Nome": "Mario",
-    "Cognome": "Rossi",
-    "Eta": 30,
+    "Nome": "Nicolò",
+    "Cognome": "Lamberti",
+    "Eta": 19,
     "Indirizzo": "Via Roma 10",
-    "Citta": "Milano",
-    "Telefono": "1234567890",
-    "Email": "mario.rossi@example.com",
+    "Citta": "Rho",
+    "Telefono": "3245914416",
+    "Email": "nicololambertitop@gmail.com",
     "Esperienza": [
         {
-            "Azienda": "Tech Solutions",
-            "Ruolo": "Sviluppatore Software",
+            "Azienda": "Binhexs",
+            "Ruolo": "Sistemista",
             "Durata": "2018-2023",
             "Descrizione": "Sviluppo di applicazioni web e gestione dei progetti IT."
         },
         {
-            "Azienda": "Digital Innovators",
-            "Ruolo": "Analista IT",
+            "Azienda": "SAP",
+            "Ruolo": "Sistemista",
             "Durata": "2015-2018",
             "Descrizione": "Analisi dei requisiti e supporto tecnico ai clienti."
         }
     ],
     "Istruzione": [
         {
-            "Titolo": "Laurea in Informatica",
-            "Istituto": "Università degli Studi di Milano",
-            "Anno": 2015
-        },
-        {
             "Titolo": "Diploma Tecnico Informatico",
-            "Istituto": "Istituto Tecnico Industriale",
-            "Anno": 2010
+            "Istituto": "Istituto Tecnico Industriale Cannizzaro Rho",
+            "Anno": 2025
         }
     ],
     "Competenze": ["JavaScript", "Python", "HTML/CSS", "SQL", "Git"],
@@ -40,8 +35,8 @@
         },
         {
             "Lingua": "Inglese",
-            "Livello": "Avanzato"
+            "Livello": "Ottimo"
         }
     ],
-    "Hobby": ["Escursionismo", "Fotografia", "Lettura di romanzi gialli"]
+    "Hobby": ["Lettura", "Scrittura", "Viaggiare", "IT Network"]
 }
