@@ -1,18 +1,47 @@
-﻿[
-  {
+{
     "Nome": "Mario",
     "Cognome": "Rossi",
     "Eta": 30,
     "Indirizzo": "Via Roma 10",
     "Citta": "Milano",
-    "Telefono": "1234567890"
-  },
-  {
-    "Nome": "Luca",
-    "Cognome": "Bianchi",
-    "Eta": 25,
-    "Indirizzo": "Via Torino 20",
-    "Citta": "Torino",
-    "Telefono": "0987654321"
-  }
-]
+    "Telefono": "1234567890",
+    "Email": "mario.rossi@example.com",
+    "Esperienza": [
+        {
+            "Azienda": "Tech Solutions",
+            "Ruolo": "Sviluppatore Software",
+            "Durata": "2018-2023",
+            "Descrizione": "Sviluppo di applicazioni web e gestione dei progetti IT."
+        },
+        {
+            "Azienda": "Digital Innovators",
+            "Ruolo": "Analista IT",
+            "Durata": "2015-2018",
+            "Descrizione": "Analisi dei requisiti e supporto tecnico ai clienti."
+        }
+    ],
+    "Istruzione": [
+        {
+            "Titolo": "Laurea in Informatica",
+            "Istituto": "Università degli Studi di Milano",
+            "Anno": 2015
+        },
+        {
+            "Titolo": "Diploma Tecnico Informatico",
+            "Istituto": "Istituto Tecnico Industriale",
+            "Anno": 2010
+        }
+    ],
+    "Competenze": ["JavaScript", "Python", "HTML/CSS", "SQL", "Git"],
+    "Lingue": [
+        {
+            "Lingua": "Italiano",
+            "Livello": "Madrelingua"
+        },
+        {
+            "Lingua": "Inglese",
+            "Livello": "Avanzato"
+        }
+    ],
+    "Hobby": ["Escursionismo", "Fotografia", "Lettura di romanzi gialli"]
+}
