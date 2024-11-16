@@ -21,12 +21,11 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Righe generate dallo script -->
         </tbody>
     </table>
 
     <script>
-        fetch("anagrafica.json")
+        fetch("cv/anagrafica.json") // Percorso relativo per il file JSON
             .then(res => res.json())
             .then(data => {
                 const tbody = document.querySelector("#anagraficaTable tbody");
@@ -40,11 +39,11 @@
                     row.insertCell().textContent = persona.Citta;
                     row.insertCell().textContent = persona.Telefono;
 
-                    // Foto generica per tutti, aggiorna il percorso
+                    // foto generica
                     const fotoCell = row.insertCell();
-                    fotoCell.innerHTML = `<img src="anagrafica_json/uomo.png" alt="Foto di ${persona.Nome}" width="50">`;
+                    fotoCell.innerHTML = `<img src="cv/anagrafica_json/uomo.png" alt="Foto di ${persona.Nome}" width="50">`;
 
-                    // Link al CV
+                    // link CV
                     const cvCell = row.insertCell();
                     cvCell.innerHTML = `<a href="cv/${persona.Nome}_${persona.Cognome}.json">CV</a>`;
                 });
