@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anagrafica</title>
 </head>
 <body>
     <h1>Anagrafica</h1>
@@ -12,42 +11,35 @@
             <tr>
                 <th>Nome</th>
                 <th>Cognome</th>
-                <th>Età</th>
+                <th>Eta</th>
                 <th>Indirizzo</th>
-                <th>Città</th>
+                <th>Citta</th>
                 <th>Telefono</th>
-                <th>Foto</th>
-                <th>CV</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
+        <tbody></tbody>
     </table>
 
     <script>
-        fetch("cv/anagrafica.json") // Percorso relativo per il file JSON
-            .then(res => res.json())
-            .then(data => {
-                const tbody = document.querySelector("#anagraficaTable tbody");
-                data.forEach(persona => {
-                    const row = tbody.insertRow();
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "anagrafica.json", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var data = JSON.parse(xhr.responseText);
+                var table = document.querySelector("#anagraficaTable tbody");
 
-                    row.insertCell().textContent = persona.Nome;
-                    row.insertCell().textContent = persona.Cognome;
-                    row.insertCell().textContent = persona.Eta;
-                    row.insertCell().textContent = persona.Indirizzo;
-                    row.insertCell().textContent = persona.Citta;
-                    row.insertCell().textContent = persona.Telefono;
-
-                    // foto generica
-                    const fotoCell = row.insertCell();
-                    fotoCell.innerHTML = `<img src="cv/anagrafica_json/uomo.png" alt="Foto di ${persona.Nome}" width="50">`;
-
-                    // link CV
-                    const cvCell = row.insertCell();
-                    cvCell.innerHTML = `<a href="cv/${persona.Nome}_${persona.Cognome}.json">CV</a>`;
-                });
-            });
+                for (var i = 0; i < data.length; i++) {
+                    var row = table.insertRow();
+                    row.insertCell(0).textContent = data[i].Nome;
+                    row.insertCell(1).textContent = data[i].Cognome;
+                    row.insertCell(2).textContent = data[i].Eta;
+                    row.insertCell(3).textContent = data[i].Indirizzo;
+                    row.insertCell(4).textContent = data[i].Citta;
+                    row.insertCell(5).textContent = data[i].Telefono;
+                }
+            }
+        };
+        xhr.send();
     </script>
 </body>
 </html>
