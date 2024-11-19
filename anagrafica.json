@@ -1,42 +1,19 @@
-{
-    "Nome": "Nicolò",
-    "Cognome": "Lamberti",
-    "Eta": 19,
+[
+  {
+    "Nome": "Mario",
+    "Cognome": "Rossi",
+    "Eta": 30,
     "Indirizzo": "Via Roma 10",
-    "Citta": "Rho",
-    "Telefono": "3245914416",
-    "Email": "nicololambertitop@gmail.com",
-    "Esperienza": [
-        {
-            "Azienda": "Binhexs",
-            "Ruolo": "Sistemista",
-            "Durata": "2018-2023",
-            "Descrizione": "Sviluppo di applicazioni web e gestione dei progetti IT."
-        },
-        {
-            "Azienda": "SAP",
-            "Ruolo": "Sistemista",
-            "Durata": "2015-2018",
-            "Descrizione": "Analisi dei requisiti e supporto tecnico ai clienti."
-        }
-    ],
-    "Istruzione": [
-        {
-            "Titolo": "Diploma Tecnico Informatico",
-            "Istituto": "Istituto Tecnico Industriale Cannizzaro Rho",
-            "Anno": 2025
-        }
-    ],
-    "Competenze": ["JavaScript", "Python", "HTML/CSS", "SQL", "Git"],
-    "Lingue": [
-        {
-            "Lingua": "Italiano",
-            "Livello": "Madrelingua"
-        },
-        {
-            "Lingua": "Inglese",
-            "Livello": "Ottimo"
-        }
-    ],
-    "Hobby": ["Lettura", "Scrittura", "Viaggiare", "IT Network"]
-}
+    "Citta": "Milano",
+    "Telefono": "1234567890"
+  },
+  {
+    "Nome": "Luca",
+    "Cognome": "Bianchi",
+    "Eta": 25,
+    "Indirizzo": "Via Torino 20",
+    "Citta": "Torino",
+    "Telefono": "0987654321"
+  }
+]
+
