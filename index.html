@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagrafica</title>
+    <style>
+        .portfolio-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Anagrafica</h1>
@@ -15,6 +23,7 @@
                 <th>Indirizzo</th>
                 <th>Citta</th>
                 <th>Telefono</th>
+                <th>Portfolio</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -24,19 +33,32 @@
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "anagrafica.json", true);
         xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText);
                 var table = document.querySelector("#anagraficaTable tbody");
 
-                for (var i = 0; i < data.length; i++) {
+                data.forEach(persona => {
                     var row = table.insertRow();
-                    row.insertCell(0).textContent = data[i].Nome;
-                    row.insertCell(1).textContent = data[i].Cognome;
-                    row.insertCell(2).textContent = data[i].Eta;
-                    row.insertCell(3).textContent = data[i].Indirizzo;
-                    row.insertCell(4).textContent = data[i].Citta;
-                    row.insertCell(5).textContent = data[i].Telefono;
-                }
+                    row.insertCell(0).textContent = persona.Nome;
+                    row.insertCell(1).textContent = persona.Cognome;
+                    row.insertCell(2).textContent = persona.Eta;
+                    row.insertCell(3).textContent = persona.Indirizzo;
+                    row.insertCell(4).textContent = persona.Citta;
+                    row.insertCell(5).textContent = persona.Telefono;
+
+                    var portfolioCell = row.insertCell(6);
+                    var link = document.createElement("a");
+                    link.href = persona.Portfolio;
+                    link.target = "_blank";
+
+                    var icon = document.createElement("img");
+                    icon.src = "portfolio-icon.png";
+                    icon.alt = "Portfolio";
+                    icon.className = "portfolio-icon";
+
+                    link.appendChild(icon);
+                    portfolioCell.appendChild(link);
+                });
             }
         };
         xhr.send();
