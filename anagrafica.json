@@ -5,7 +5,8 @@
     "Eta": 30,
     "Indirizzo": "Via Roma 10",
     "Citta": "Milano",
-    "Telefono": "1234567890"
+    "Telefono": "1234567890",
+    "Portfolio": "mario_rossi_portfolio.xml"
   },
   {
     "Nome": "Luca",
@@ -13,7 +14,7 @@
     "Eta": 25,
     "Indirizzo": "Via Torino 20",
     "Citta": "Torino",
-    "Telefono": "0987654321"
+    "Telefono": "0987654321",
+    "Portfolio": "luca_bianchi_portfolio.xml"
   }
 ]
-
