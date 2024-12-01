@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portfolio>
+    <persona>
+        <nome>Mario</nome>
+        <cognome>Rossi</cognome>
+        <lavori>
+            <lavoro>
+                <titolo>Sviluppatore Web</titolo>
+                <descrizione>Realizzazione di siti web dinamici per piccole imprese.</descrizione>
+                <link>https://example.com/mario-rossi-web</link>
+            </lavoro>
+            <lavoro>
+                <titolo>Analista Dati</titolo>
+                <descrizione>Creazione di report e analisi dati per grandi aziende.</descrizione>
+                <link>https://example.com/mario-rossi-analisi</link>
+            </lavoro>
+        </lavori>
+    </persona>
+</portfolio>
