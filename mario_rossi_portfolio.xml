@@ -3,15 +3,25 @@
     <persona>
         <nome>Mario</nome>
         <cognome>Rossi</cognome>
+        <email>mario.rossi@example.com</email>
+        <telefono>1234567890</telefono>
         <lavori>
             <lavoro>
                 <titolo>Sviluppatore Web</titolo>
+                <posizione>Frontend Developer</posizione>
                 <descrizione>Realizzazione di siti web dinamici per piccole imprese.</descrizione>
+                <data-inizio>2020-03-01</data-inizio>
+                <data-fine>2022-06-30</data-fine>
+                <tecnologie>HTML, CSS, JavaScript</tecnologie>
             </lavoro>
             <lavoro>
                 <titolo>Analista Dati</titolo>
+                <posizione>Data Analyst</posizione>
                 <descrizione>Creazione di report e analisi dati per grandi aziende.</descrizione>
-                <link>https//:esempio.com</link>
+                <data-inizio>2018-01-01</data-inizio>
+                <data-fine>2020-02-28</data-fine>
+                <tecnologie>Excel, Python, SQL</tecnologie>
+                <link>https://ws.binhexs.it</link>
             </lavoro>
         </lavori>
     </persona>
