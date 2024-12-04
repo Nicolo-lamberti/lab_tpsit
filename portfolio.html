@@ -9,11 +9,11 @@
 <body class="bg-light">
     <div class="container py-5">
         <h1 class="text-center mb-4">Portfolio</h1>
-        <div id="xmlContainer" class="p-3 bg-white border rounded"></div>
+        <div id="portfolioContainer" class="p-3 bg-white border rounded shadow"></div>
     </div>
 
     <script>
-        // Ottieni il nome del file XML dai parametri URL
+        // Ottieni il file XML dai parametri URL
         const urlParams = new URLSearchParams(window.location.search);
         const file = urlParams.get("file");
 
@@ -21,14 +21,45 @@
             fetch(file)
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById("xmlContainer").textContent = data;
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data, "application/xml");
+
+                    // Estrai i dati dall'XML
+                    const persona = xmlDoc.querySelector("persona");
+                    const nome = persona.querySelector("nome").textContent;
+                    const cognome = persona.querySelector("cognome").textContent;
+                    const lavori = persona.querySelectorAll("lavoro");
+
+                    // Crea un layout Bootstrap per visualizzare i dati
+                    let html = `
+                        <h2>${nome} ${cognome}</h2>
+                        <h3 class="mt-4">Lavori:</h3>
+                        <div class="list-group">
+                    `;
+
+                    lavori.forEach(lavoro => {
+                        const titolo = lavoro.querySelector("titolo").textContent;
+                        const descrizione = lavoro.querySelector("descrizione").textContent;
+                        const link = lavoro.querySelector("link")?.textContent || "";
+
+                        html += `
+                            <div class="list-group-item">
+                                <h4>${titolo}</h4>
+                                <p>${descrizione}</p>
+                                ${link ? `<a href="${link}" target="_blank" class="btn btn-primary">Vedi lavoro</a>` : ""}
+                            </div>
+                        `;
+                    });
+
+                    html += `</div>`;
+                    document.getElementById("portfolioContainer").innerHTML = html;
                 })
                 .catch(error => {
-                    document.getElementById("xmlContainer").textContent = "Errore nel caricamento del file XML.";
+                    document.getElementById("portfolioContainer").textContent = "Errore nel caricamento del file XML.";
                     console.error("Errore:", error);
                 });
         } else {
-            document.getElementById("xmlContainer").textContent = "Nessun file XML specificato.";
+            document.getElementById("portfolioContainer").textContent = "Nessun file XML specificato.";
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
