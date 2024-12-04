@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portfolio>
+    <persona>
+        <nome>Luca</nome>
+        <cognome>Bianchi</cognome>
+        <email>luca.bianchi@example.com</email>
+        <telefono>0987654321</telefono>
+        <lavori>
+            <lavoro>
+                <titolo>Trader alla Borsa di Milano</titolo>
+                <posizione>Equity Trader</posizione>
+                <descrizione>Gestione di portafogli azionari e consulenza finanziaria per clienti istituzionali.</descrizione>
+                <data-inizio>2019-09-01</data-inizio>
+                <data-fine>Presente</data-fine>
+                <tecnologie>Bloomberg, Python, Excel</tecnologie>
+                <link>https://borsamilano.it/luca-bianchi</link>
+            </lavoro>
+            <lavoro>
+                <titolo>Cameriere</titolo>
+                <posizione>Staff di Sala</posizione>
+                <descrizione>Gestione della sala in un ristorante di fascia media, servizio ai tavoli e accoglienza clienti.</descrizione>
+                <data-inizio>2015-06-01</data-inizio>
+                <data-fine>2017-12-31</data-fine>
+                <tecnologie>Servizio al cliente, gestione ordini</tecnologie>
+            </lavoro>
+        </lavori>
+    </persona>
+</portfolio>
