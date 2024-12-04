@@ -13,65 +13,78 @@
     </div>
 
     <script>
-        // Ottieni il nome del file XML dai parametri URL (dalla query string)
+        // Funzione per caricare il file XML
+        function loadXML(file) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', file, true);  // Usa una richiesta GET per caricare il file XML
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        try {
+                            const xmlDoc = xhr.responseXML;  // Ottieni il documento XML dalla risposta
+                            processXML(xmlDoc);  // Processa il documento XML
+                        } catch (error) {
+                            displayError('Errore nel parsing del file XML');
+                        }
+                    } else {
+                        displayError('Errore nel caricamento del file XML: ' + xhr.status);
+                    }
+                }
+            };
+            xhr.send();  // Invia la richiesta
+        }
+
+        // Funzione per visualizzare l'errore nel caso di fallimento
+        function displayError(message) {
+            document.getElementById("portfolioContainer").innerHTML = `
+                <div class="alert alert-danger">${message}</div>
+            `;
+        }
+
+        // Funzione per processare il contenuto XML
+        function processXML(xmlDoc) {
+            const persona = xmlDoc.querySelector("persona");
+            const nome = persona.querySelector("nome").textContent;
+            const cognome = persona.querySelector("cognome").textContent;
+            const email = persona.querySelector("email") ? persona.querySelector("email").textContent : 'Non disponibile';
+            const telefono = persona.querySelector("telefono") ? persona.querySelector("telefono").textContent : 'Non disponibile';
+            const lavori = persona.querySelectorAll("lavoro");
+
+            let html = `
+                <h2>${nome} ${cognome}</h2>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Telefono:</strong> ${telefono}</p>
+                <h3 class="mt-4">Lavori:</h3>
+                <div class="list-group">
+            `;
+
+            lavori.forEach(lavoro => {
+                const titolo = lavoro.querySelector("titolo").textContent;
+                const descrizione = lavoro.querySelector("descrizione").textContent;
+                const link = lavoro.querySelector("link") ? lavoro.querySelector("link").textContent : "";
+
+                html += `
+                    <div class="list-group-item">
+                        <h4>${titolo}</h4>
+                        <p><strong>Descrizione:</strong> ${descrizione}</p>
+                        ${link ? `<a href="${link}" target="_blank" class="btn btn-primary">Vedi lavoro</a>` : ""}
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            document.getElementById("portfolioContainer").innerHTML = html;  // Inserisci il contenuto nel DOM
+        }
+
+        // Ottieni il nome del file XML dai parametri URL
         const urlParams = new URLSearchParams(window.location.search);
-        const file = urlParams.get('file'); // Ottiene il valore del parametro 'file'
+        const file = urlParams.get('file');
 
         if (file) {
-            // Se il file XML è stato specificato
-            fetch(file)
-                .then(response => response.text())  // Ottieni il contenuto del file XML come testo
-                .then(data => {
-                    const parser = new DOMParser(); // Crea un parser per l'XML
-                    const xmlDoc = parser.parseFromString(data, "application/xml");
-
-                    // Estrai i dati dall'XML
-                    const persona = xmlDoc.querySelector("persona");
-                    const nome = persona.querySelector("nome").textContent;
-                    const cognome = persona.querySelector("cognome").textContent;
-                    const email = persona.querySelector("email") ? persona.querySelector("email").textContent : 'Non disponibile';
-                    const telefono = persona.querySelector("telefono") ? persona.querySelector("telefono").textContent : 'Non disponibile';
-                    const lavori = persona.querySelectorAll("lavoro");
-
-                    // Crea la struttura HTML con Bootstrap per visualizzare i dati
-                    let html = `
-                        <h2>${nome} ${cognome}</h2>
-                        <p><strong>Email:</strong> ${email}</p>
-                        <p><strong>Telefono:</strong> ${telefono}</p>
-                        <h3 class="mt-4">Lavori:</h3>
-                        <div class="list-group">
-                    `;
-
-                    // Cicla tra i lavori e aggiunge informazioni
-                    lavori.forEach(lavoro => {
-                        const titolo = lavoro.querySelector("titolo").textContent;
-                        const descrizione = lavoro.querySelector("descrizione").textContent;
-                        const link = lavoro.querySelector("link") ? lavoro.querySelector("link").textContent : "";
-
-                        html += `
-                            <div class="list-group-item">
-                                <h4>${titolo}</h4>
-                                <p><strong>Descrizione:</strong> ${descrizione}</p>
-                                ${link ? `<a href="${link}" target="_blank" class="btn btn-primary">Vedi lavoro</a>` : ""}
-                            </div>
-                        `;
-                    });
-
-                    html += `</div>`;
-                    document.getElementById("portfolioContainer").innerHTML = html;  // Inserisce il contenuto generato nel DOM
-                })
-                .catch(error => {
-                    // Se c'è un errore nel recupero o nel parsing del file XML
-                    document.getElementById("portfolioContainer").innerHTML = `
-                        <div class="alert alert-danger">Errore nel caricamento del file XML.</div>
-                    `;
-                    console.error("Errore:", error);
-                });
+            // Se il file è specificato nel parametro URL, carica il file XML
+            loadXML(file);
         } else {
-            // Se non è stato fornito il parametro 'file'
-            document.getElementById("portfolioContainer").innerHTML = `
-                <div class="alert alert-warning">Nessun file XML specificato.</div>
-            `;
+            displayError('Nessun file XML specificato.');
         }
     </script>
 </body>
