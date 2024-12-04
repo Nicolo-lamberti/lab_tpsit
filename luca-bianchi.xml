@@ -3,7 +3,7 @@
     <persona>
         <nome>Luca</nome>
         <cognome>Bianchi</cognome>
-        <email>luca.bianchi@example.com</email>
+        <email>luca.bianchi@libero.com</email>
         <telefono>0987654321</telefono>
         <lavori>
             <lavoro>
@@ -12,7 +12,7 @@
                 <descrizione>Gestione di portafogli azionari e consulenza finanziaria per clienti istituzionali.</descrizione>
                 <data-inizio>2019-09-01</data-inizio>
                 <data-fine>Presente</data-fine>
-                <tecnologie>Bloomberg, Python, Excel</tecnologie>
+                <tecnologie>cobol, Python, Excel</tecnologie>
                 <link>https://borsamilano.it/luca-bianchi</link>
             </lavoro>
             <lavoro>
