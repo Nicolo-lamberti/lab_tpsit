@@ -3,12 +3,12 @@
     <persona>
         <nome>Mario</nome>
         <cognome>Rossi</cognome>
-        <email>mario.rossi@example.com</email>
+        <email>mario.rossi@libero.com</email>
         <telefono>1234567890</telefono>
         <lavori>
             <lavoro>
                 <titolo>Sviluppatore Web</titolo>
-                <posizione>Frontend Developer</posizione>
+                <posizione>Front Developer</posizione>
                 <descrizione>Realizzazione di siti web dinamici per piccole imprese.</descrizione>
                 <data-inizio>2020-03-01</data-inizio>
                 <data-fine>2022-06-30</data-fine>
