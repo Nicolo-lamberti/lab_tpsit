@@ -13,18 +13,19 @@
     </div>
 
     <script>
-        // Ottieni il nome del file XML dai parametri URL
+        // Ottieni il parametro "file" dall'URL per caricare il file XML
         const urlParams = new URLSearchParams(window.location.search);
-        const file = urlParams.get('file');
+        const file = urlParams.get('file');  // E.g., ?file=luca-bianchi.xml
 
         if (file) {
+            // Carica il file XML
             fetch(file)
-                .then(response => response.text())
+                .then(response => response.text()) // Converte il file in testo
                 .then(data => {
                     const parser = new DOMParser();
                     const xmlDoc = parser.parseFromString(data, "application/xml");
 
-                    // Estrai i dati dall'XML
+                    // Estrai i dati dalla struttura XML
                     const persona = xmlDoc.querySelector("persona");
                     const nome = persona.querySelector("nome").textContent;
                     const cognome = persona.querySelector("cognome").textContent;
@@ -32,7 +33,7 @@
                     const telefono = persona.querySelector("telefono").textContent;
                     const lavori = persona.querySelectorAll("lavoro");
 
-                    // Genera il layout Bootstrap
+                    // Genera HTML per il layout Bootstrap
                     let html = `
                         <h2>${nome} ${cognome}</h2>
                         <p><strong>Email:</strong> ${email}</p>
@@ -41,22 +42,16 @@
                         <div class="list-group">
                     `;
 
+                    // Aggiungi ciascun lavoro all'elenco
                     lavori.forEach(lavoro => {
                         const titolo = lavoro.querySelector("titolo").textContent;
-                        const posizione = lavoro.querySelector("posizione").textContent;
                         const descrizione = lavoro.querySelector("descrizione").textContent;
-                        const dataInizio = lavoro.querySelector("data-inizio")?.textContent || "N/A";
-                        const dataFine = lavoro.querySelector("data-fine")?.textContent || "N/A";
-                        const tecnologie = lavoro.querySelector("tecnologie")?.textContent || "N/A";
                         const link = lavoro.querySelector("link")?.textContent || "";
 
                         html += `
                             <div class="list-group-item">
                                 <h4>${titolo}</h4>
-                                <p><strong>Posizione:</strong> ${posizione}</p>
                                 <p><strong>Descrizione:</strong> ${descrizione}</p>
-                                <p><strong>Periodo:</strong> ${dataInizio} - ${dataFine}</p>
-                                <p><strong>Tecnologie:</strong> ${tecnologie}</p>
                                 ${link ? `<a href="${link}" target="_blank" class="btn btn-primary">Vedi lavoro</a>` : ""}
                             </div>
                         `;
@@ -66,12 +61,14 @@
                     document.getElementById("portfolioContainer").innerHTML = html;
                 })
                 .catch(error => {
+                    // Mostra un messaggio di errore se non è possibile caricare il file XML
                     document.getElementById("portfolioContainer").innerHTML = `
                         <div class="alert alert-danger">Errore nel caricamento del file XML.</div>
                     `;
                     console.error("Errore:", error);
                 });
         } else {
+            // Se non è stato fornito il parametro "file", mostra un messaggio di avviso
             document.getElementById("portfolioContainer").innerHTML = `
                 <div class="alert alert-warning">Nessun file XML specificato.</div>
             `;
