@@ -34,7 +34,7 @@
             <tbody id="anagraficaTable"></tbody>
         </table>
 
-        <!-- Tabella XML -->
+        <!-- Area Portfolio XML -->
         <h2 class="mt-5 mb-3">Portfolio XML</h2>
         <div id="portfolioContainer" class="row"></div>
     </div>
@@ -57,25 +57,27 @@
                     row.insertCell(4).textContent = persona.Citta;
                     row.insertCell(5).textContent = persona.Telefono;
 
+                    // Aggiungi icona Portfolio
                     var portfolioCell = row.insertCell(6);
-                    var link = document.createElement("a");
-                    link.href = persona.Portfolio;
-                    link.target = "_blank";
-
                     var icon = document.createElement("img");
-                    icon.src = "portfolio-icon.png";
+                    icon.src = "portfolio-icon.png"; // Immagine del portfolio
                     icon.alt = "Portfolio";
                     icon.className = "portfolio-icon";
-
-                    link.appendChild(icon);
-                    portfolioCell.appendChild(link);
+                    icon.setAttribute("data-portfolio", persona.Portfolio); // Collega il file XML
+                    icon.addEventListener("click", function () {
+                        mostraPortfolio(this.getAttribute("data-portfolio"));
+                    });
+                    portfolioCell.appendChild(icon);
                 });
             }
         };
         xhr.send();
 
-        // Carica e visualizza XML
-        function caricaXML(file, container) {
+        // Mostra contenuto XML
+        function mostraPortfolio(file) {
+            const portfolioContainer = document.getElementById("portfolioContainer");
+            portfolioContainer.innerHTML = ""; // Svuota il contenitore precedente
+
             fetch(file)
                 .then(response => response.text())
                 .then(data => {
@@ -88,7 +90,7 @@
                     const lavori = persona.getElementsByTagName("lavoro");
 
                     const card = document.createElement("div");
-                    card.className = "col-md-6 col-lg-4 mb-4";
+                    card.className = "col-12 mb-4";
                     card.innerHTML = `
                         <div class="card shadow-sm">
                             <div class="card-body">
@@ -104,14 +106,10 @@
                             </div>
                         </div>
                     `;
-                    container.appendChild(card);
+                    portfolioContainer.appendChild(card);
                 })
                 .catch(error => console.error("Errore nel caricamento del file XML:", error));
         }
-
-        const portfolioContainer = document.getElementById("portfolioContainer");
-        caricaXML("mario_rossi_portfolio.xml", portfolioContainer);
-        caricaXML("luca_bianchi_portfolio.xml", portfolioContainer);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
