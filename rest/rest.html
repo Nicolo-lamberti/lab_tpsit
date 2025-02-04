@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post WordPress</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #0073aa;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        li:hover {
+            transform: scale(1.02);
+        }
+
+        a {
+            text-decoration: none;
+            color: #0073aa;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Articoli</h1>
+    <ul id="elenco-post"></ul>
+
+    <script>
+        const endpointWordPress = 'https://it.wordpress.org/wp-json/wp/v2/posts';
+        async function caricaPost() {
+            try {
+                const rispostaApi = await fetch(endpointWordPress);
+                if (!rispostaApi.ok) throw new Error('Errore risposta API');
+                const datiPost = await rispostaApi.json();
+                const contenitoreElenco = document.getElementById('elenco-post');
+                contenitoreElenco.innerHTML = '';
+
+                datiPost.forEach(elemento => {
+                    const voceLista = document.createElement('li');
+                    voceLista.innerHTML = `<a href="${elemento.link}" target="_blank">${elemento.title.rendered}</a>`;
+                    contenitoreElenco.appendChild(voceLista);
+                });
+            } catch (errore) {
+                console.error('errore:', errore);
+            }
+        }
+        caricaPost();
+    </script>
+</body>
+</html>
