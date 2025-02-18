@@ -8,12 +8,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         #map { height: 400px; width: 100%; }
+        .info-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .info-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .info-text {
+            font-size: 1rem;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body>
     <div class="container py-5">
         <h1 class="text-center mb-4">La tua posizione</h1>
         <div id="map"></div>
+
+        <div class="info-container">
+            <p class="info-title">Informazioni utili:</p>
+            <p class="info-text">Questa mappa ti mostra la tua posizione attuale. Puoi usare la geolocalizzazione per trovare facilmente la tua posizione su una mappa interattiva.</p>
+            <p class="info-text">Se la geolocalizzazione non è supportata dal tuo browser, la mappa non funzionerà correttamente. Assicurati di abilitare i permessi di geolocalizzazione nel tuo browser.</p>
+        </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
