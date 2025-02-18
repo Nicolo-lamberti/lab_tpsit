@@ -46,7 +46,12 @@
                     const lat = posizione.coords.latitude;
                     const lon = posizione.coords.longitude;
 
-                    const mappa = L.map('map').setView([lat, lon], 13);
+                    const mappa = L.map('map', {
+                        center: [lat, lon],
+                        zoom: 13, // Livello di zoom iniziale
+                        minZoom: 10, // Zoom minimo
+                        maxZoom: 18 // Zoom massimo
+                    });
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; OpenStreetMap contributors'
