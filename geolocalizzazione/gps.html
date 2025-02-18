@@ -45,7 +45,7 @@
                 navigator.geolocation.getCurrentPosition(function(posizione) {
                     const lat = posizione.coords.latitude;
                     const lon = posizione.coords.longitude;
-                    const mappa = L.map('map').setView([lat, lon], 15); 
+                    const mappa = L.map('map').setView([lat, lon], 15);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; OpenStreetMap contributors'
                     }).addTo(mappa);
@@ -59,7 +59,7 @@
             }
         }
 
-        window.onload = mostraMappa;
+        window.addEventListener('load', mostraMappa);
     </script>
 </body>
 </html>
