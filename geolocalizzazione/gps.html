@@ -46,17 +46,15 @@
                     const lat = posizione.coords.latitude;
                     const lon = posizione.coords.longitude;
 
-                    const mappa = L.map('map', {
-                        center: [lat, lon],
-                        zoom: 13, // Livello di zoom iniziale
-                        minZoom: 10, // Zoom minimo
-                        maxZoom: 18 // Zoom massimo
-                    });
+                    // Imposta la mappa con il centro sulla posizione dell'utente
+                    const mappa = L.map('map').setView([lat, lon], 15);  // Zoom 15, che è un livello di zoom medio per la posizione
 
+                    // Aggiungi il layer della mappa (OpenStreetMap)
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; OpenStreetMap contributors'
                     }).addTo(mappa);
 
+                    // Aggiungi il marker sulla posizione
                     L.marker([lat, lon]).addTo(mappa)
                         .bindPopup("Sei qui!").openPopup();
                 }, function(errore) {
