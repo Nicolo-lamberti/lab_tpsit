@@ -45,13 +45,12 @@
                 navigator.geolocation.getCurrentPosition(function(posizione) {
                     const lat = posizione.coords.latitude;
                     const lon = posizione.coords.longitude;
-                    const mappa = L.map('map').setView([lat, lon], 13);
+                    const mappa = L.map('map').setView([lat, lon], 15);  // Impostato il livello di zoom iniziale a 15
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; OpenStreetMap contributors'
                     }).addTo(mappa);
                     L.marker([lat, lon]).addTo(mappa)
                         .bindPopup("Sei qui!").openPopup();
-                    mappa.setZoom(15);
                 }, function(errore) {
                     console.error("Errore della posizione:", errore);
                 });
