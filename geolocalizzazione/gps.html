@@ -52,8 +52,8 @@
                     L.marker([lat, lon]).addTo(mappa)
                         .bindPopup("Sei qui!").openPopup();
 
-                    // Imposta lo zoom massimo (18 in questo caso)
-                    mappa.setZoom(18);
+                    
+                    mappa.setZoom(10);
                 }, function(errore) {
                     console.error("Errore della posizione:", errore);
                 });
